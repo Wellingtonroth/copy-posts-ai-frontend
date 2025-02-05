@@ -34,21 +34,21 @@
 </template>
 
 <script setup>
-import { reactive } from 'vue';
+import { ref } from 'vue';
 import { useRouter } from 'vue-router';
-import { useAuth } from '@/modules/auth/useAuth';
+import useAuth from '@/composables/auth';
 
 const router = useRouter();
 const { login } = useAuth();
 
-const form = reactive({
+const form = ref({
   email: '',
   password: '',
 });
 
 async function handleLogin() {
   try {
-    const response = await login(form);
+    const response = await login(form.value);
 
     const accessToken = response?.data?.data?.session?.access_token;
 
@@ -65,8 +65,6 @@ async function handleLogin() {
     alert('Login failed. Please check your credentials and try again.');
   }
 }
-
-
 </script>
 
 <style scoped>

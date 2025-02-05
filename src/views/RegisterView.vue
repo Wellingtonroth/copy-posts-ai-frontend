@@ -34,21 +34,21 @@
 </template>
 
 <script setup>
-import { reactive } from 'vue';
+import { ref } from 'vue';
 import { useRouter } from 'vue-router';
-import { useAuth } from '@/modules/auth/useAuth';
+import useAuth from '@/composables/auth';
 
 const router = useRouter();
 const { register } = useAuth();
 
-const form = reactive({
+const form = ref({
   email: '',
   password: '',
 });
 
 async function handleRegister() {
   try {
-    await register(form);
+    await register(form.value);
     alert('Registration successful! Redirecting to login...');
     router.push('/login');
   } catch (error) {

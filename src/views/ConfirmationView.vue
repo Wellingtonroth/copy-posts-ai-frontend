@@ -18,7 +18,6 @@ const success = ref(false);
 onMounted(async () => {
   // Extract the hash fragment and decode it
   const hash = window.location.hash.substring(1); // Remove the `#`
-  console.log('Hash:', hash);
 
   // Decode the URL
   const decodedHash = decodeURIComponent(hash);
